@@ -100,3 +100,36 @@ img {
   text-align: center;
   margin: 20px 0;
 }
+
+.home {
+  
+  width: 100%;
+  height: 100vh;
+  background-image: url(images/sneakHome.jpeg);
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-light {
+    
+    background-color: white !important;
+}
+
+.navbar {
+  background-color: white !important;
+}
+
+#home-content {
+  
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); /* Vertically Centered */
+  text-align: center; 
+  color: white;
+  
+}
+
+.home h1 {
+  font-size: 70px;
+}
