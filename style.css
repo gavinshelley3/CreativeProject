@@ -242,7 +242,7 @@ img {
 #logo {
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
-  color: #E91717;
+  color: #E95E17;
 }
 
 .profile-page{
@@ -260,13 +260,14 @@ img {
 
 .profile-box{
   
-  background: #ff574a; /* background color */
+  background: #E94217; /* background color */
   justify-content: center;
   text-align: center;
   padding: 40px 90px; /* space between elements */
   color: white; /* text color */
   position: relative;
   border-radius: 20px; /* curved edges */
+  box-shadow: 0 5px 10px rgba(244, 67, 54, 0.5);
   
 }
 
@@ -318,7 +319,7 @@ img {
 .profile-box button{
   
   background: white;
-  color: #ff574a;
+  color: #E95E17;
   border: none;
   outline: none;
   box-shadow: 0 5px 10px rgba(244, 67, 54, 0.5);
