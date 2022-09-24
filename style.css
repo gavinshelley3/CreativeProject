@@ -189,6 +189,7 @@ img {
   display: flex;
   align-items: center;
   
+  
 }
 
 .full-width {
@@ -212,6 +213,7 @@ img {
   /* Vertically Centered */
   text-align: center;
   color: white;
+  justify-content: center;
 
 }
 
@@ -355,4 +357,37 @@ img {
   
   width: 20px;
   margin: 30px 5px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 450px;
+  margin-right: 0;
+  margin-bottom: 20px;
+
+}
+
+.column {
+  flex: 1;
+  margin: 5px;
+  text-align: center; 
+  color: white;
+  letter-spacing: 1.2px;
+  height: 266px;
+  
+  
+}
+
+.column img{
+  width: 400px;
+  height: 266px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.column img:hover{
+  
+  transform: scale(1.05);
 }
