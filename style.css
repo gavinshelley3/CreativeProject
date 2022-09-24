@@ -242,7 +242,7 @@ img {
 #logo {
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
-  color: #E95E17;
+  color: #E44242;
 }
 
 .profile-page{
@@ -260,7 +260,7 @@ img {
 
 .profile-box{
   
-  background: #E94217; /* background color */
+  background: #E44242; /* background color */
   justify-content: center;
   text-align: center;
   padding: 40px 90px; /* space between elements */
@@ -319,7 +319,7 @@ img {
 .profile-box button{
   
   background: white;
-  color: #E95E17;
+  color: #E44242;
   border: none;
   outline: none;
   box-shadow: 0 5px 10px rgba(244, 67, 54, 0.5);
