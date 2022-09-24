@@ -6,13 +6,16 @@
 
 body {
   background-color: #fff;
-  margin: 0% 10%;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 img {
   width: auto;
   height: auto;
+}
+
+.margin-container {
+  margin: 0% 10%;
 }
 
 .title {
@@ -21,7 +24,6 @@ img {
   text-align: center;
   margin: 20px 0;
 }
-
 
 .shew-bot-logo {
   width: 100px;
@@ -33,7 +35,7 @@ img {
 .shew-bot-logo img {
   width: 100%;
   height: 100%;
-  transition: transform .2s;
+  transition: transform 0.2s;
 }
 
 .shew-bot-logo img:hover {
@@ -50,29 +52,29 @@ img {
   align-items: center;
   width: 100%;
   margin: 0;
-  color: #E91717;       /* Not working*/
+  color: #e91717; /* Not working*/
 }
 
 .nav-item {
-  color: #E91717;       /* Not working*/
+  color: #e91717; /* Not working*/
   font-size: 20px;
   font-weight: 700;
   text-decoration: none;
 }
 
 .nav-link {
-  color: #E91717;       /* Not working*/
+  color: #e91717; /* Not working*/
   font-size: 20px;
   font-weight: 700;
   text-decoration: none;
 }
 
 .navbar-nav .nav-item .nav-link {
-  color: red;       /* Not working*/
+  color: red; /* Not working*/
 }
 
 .navbar-light {
-    background-color: white !important;
+  background-color: white !important;
 }
 
 .photo-container {
@@ -96,7 +98,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform .2s;
+  transition: transform 0.2s;
 }
 
 .blog-main img:hover {
@@ -141,7 +143,7 @@ img {
   width: 100%;
   margin-bottom: 10px;
   object-fit: cover;
-  transition: transform .2s;
+  transition: transform 0.2s;
 }
 
 .blog-small-photos img:hover {
@@ -179,16 +181,14 @@ img {
 }
 
 .home {
-
   width: 100%;
   height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url(images/sneakHome.jpeg);
+    url(images/sneakHome.jpeg);
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
-  
 }
 
 .navbar {
@@ -198,7 +198,6 @@ img {
 }
 
 #home-content {
-
   width: 100%;
   position: absolute;
   top: 50%;
@@ -206,24 +205,20 @@ img {
   /* Vertically Centered */
   text-align: center;
   color: white;
-
 }
 
 .home h1 {
   font-size: 70px;
   margin-top: 80px;
-  
 }
 
 .home p {
   letter-spacing: 1.3px;
   margin: 20px auto;
   font-size: 20px;
-  
 }
 
 .button {
-  
   width: 200px;
   padding: 15px 0;
   text-align: center;
@@ -233,35 +228,31 @@ img {
   color: black;
   text-transform: uppercase;
   border: none;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background-color: white;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  
 }
 
 #logo {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: bold;
-  color: #E44242;
+  color: #e44242;
 }
 
-.profile-page{
-  
+.profile-page {
   width: 100%;
   height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url(profile-images/profileBack.webp);
+    url(profile-images/profileBack.webp);
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
 
-.profile-box{
-  
-  background: #E44242; /* background color */
+.profile-box {
+  background: #e44242; /* background color */
   justify-content: center;
   text-align: center;
   padding: 40px 90px; /* space between elements */
@@ -269,17 +260,16 @@ img {
   position: relative;
   border-radius: 20px; /* curved edges */
   box-shadow: 0 5px 10px rgba(244, 67, 54, 0.5);
-  
 }
 
-.menu-icon{
+.menu-icon {
   width: 25px;
   position: absolute;
   left: 40px;
   top: 40px;
 }
 
-.setting-icon{
+.setting-icon {
   width: 25px;
   position: absolute;
   right: 40px;
@@ -287,17 +277,14 @@ img {
 }
 
 .profile-pic {
-  
   width: 150px;
   border-radius: 50%; /* make it a circle*/
   background: white; /* make white ring */
   padding: 6px;
   margin-top: 40px;
-  
 }
 
-.profile-bottom{
-  
+.profile-bottom {
   background: white;
   color: #999;
   padding: 60px 0px;
@@ -306,21 +293,17 @@ img {
   margin-bottom: -40px;
   border-radius: 20px;
   margin-top: -10px;
-  
 }
 
-.profile-bottom img{
-  
+.profile-bottom img {
   width: 15px;
   margin-top: 15px;
   cursor: pointer;
-  
 }
 
-.profile-box button{
-  
+.profile-box button {
   background: white;
-  color: #E44242;
+  color: #e44242;
   border: none;
   outline: none;
   box-shadow: 0 5px 10px rgba(244, 67, 54, 0.5);
@@ -330,23 +313,151 @@ img {
   margin-bottom: -50px;
   font-weight: 600;
   font-size: 16px;
-  
 }
 
-.profile-box h3{
-  
+.profile-box h3 {
   font-size: 22px;
   margin-top: 20px;
   font-weight: 500;
-  
 }
 
-.profile-box a{
+.profile-box a {
   cursor: pointer;
 }
 
-.social-media img{
-  
+.social-media img {
   width: 20px;
   margin: 30px 5px;
+}
+
+.header {
+  background-color: white;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.task-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.tasks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 0 0 0 20px;
+  height: 80px;
+  width: 70%;
+}
+
+.task {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.task-name {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.task-info {
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.task-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin: 20px 0;
+  color: #fff;
+  background-color: #e44242;
+  border-color: #e44242;
+  width: 80px;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.btn-start {
+  background-color: #3cd656;
+  border-color: #3cd656;
+  width: 80px;
+  height: 40px;
+}
+
+.btn-start:hover {
+  background-color: #3cd656;
+  border-color: #3cd656;
+}
+
+.btn-start:focus {
+  background-color: #3cd656;
+  border-color: #3cd656;
+}
+
+.btn-start:active {
+  background-color: #3cd656;
+  border-color: #3cd656;
+}
+
+.btn-start:visited {
+  background-color: #3cd656;
+  border-color: #3cd656;
+}
+
+.btn-start:link {
+  background-color: #3cd656;
+  border-color: #3cd656;
+}
+
+.btn-stop {
+  background-color: #e44242;
+  border-color: #e44242;
+  width: 80px;
+  height: 40px;
+}
+
+.btn-stop:hover {
+  background-color: #e44242;
+  border-color: #e44242;
+}
+
+.btn-stop:focus {
+  background-color: #e44242;
+  border-color: #e44242;
+}
+
+.btn-stop:active {
+  background-color: #e44242;
+  border-color: #e44242;
+}
+
+.btn-stop:visited {
+  background-color: #e44242;
+  border-color: #e44242;
+}
+
+.btn-stop:link {
+  background-color: #e44242;
+  border-color: #e44242;
+}
+
+.releases {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 0 0 0 20px;
+  /* height: 80px; */
+  width: 30%;
+}
+
+.release {
+  
 }
