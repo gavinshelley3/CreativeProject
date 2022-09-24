@@ -46,6 +46,10 @@ img {
   margin: 20px 0;
 }
 
+.navbar-light {
+    background-color: white !important;
+}
+
 .photo-container {
   display: flex;
   flex-wrap: column;
@@ -112,13 +116,10 @@ img {
   text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
-.bg-light {
-
-  background-color: white !important;
-}
-
 .navbar {
   background-color: white !important;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
 }
 
 #home-content {
@@ -169,7 +170,3 @@ img {
   color: #E91717;
 }
 
-.navbar{
-  margin-bottom: 0 !important;
-  margin-top: 0 !important;
-}
