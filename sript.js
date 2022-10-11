@@ -4,6 +4,10 @@ document.getElementById("subscribe").addEventListener("click",
     async function(event) {
         event.preventDefault();
         sneaks.getMostPopular(10, function(err, products){
-            console.log(products);
+            if(err != null){
+                console.log(err);
+            } else {
+                console.log(products);
+            }
         })
     });
