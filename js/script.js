@@ -15,7 +15,12 @@ document
         return response.json();
       })
       .then(function (json) {
-            let imageURL = json.results[0].urls.regular;
+        for (let i = 0; i < json.results.length; i++) {
+          let img = document.createElement("img");
+          img.src = json.results[i].urls.small;
+          document.getElementById("insertPicture").appendChild(img);
+        }
+            let imageURL = json.results[0].urls.small;
             let img = document.createElement("img");
             img.setAttribute("src", imageURL);
             document.body.appendChild(img);
