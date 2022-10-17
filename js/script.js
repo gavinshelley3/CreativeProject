@@ -15,13 +15,10 @@ document
         return response.json();
       })
       .then(function (json) {
-        // let results = json.results;
-        // for (let i = 0; i < 10; i++) {
-            json.results.forEach(element => {
-                let imageURL = url.full;
-
-            });
-        // }
+            let imageURL = json.results[0].urls.regular;
+            let img = document.createElement("img");
+            img.setAttribute("src", imageURL);
+            document.body.appendChild(img);
         console.log(imageURL);
         console.log(json);
       })
