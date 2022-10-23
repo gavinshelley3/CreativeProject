@@ -246,6 +246,29 @@ img {
   
 }
 
+#insertPicture {
+  
+}
+
+.insertPicture {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.shoeTitle {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.shoeIMG {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
 .button {
   
   width: 200px;

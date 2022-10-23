@@ -1,5 +1,6 @@
 document
-  .getElementById("subscribe")
+  //   .getElementById("subscribe")
+  .getElementById("deals")
   .addEventListener("click", function (event) {
     console.log("click!");
     event.preventDefault();
@@ -15,29 +16,23 @@ document
         return response.json();
       })
       .then(function (json) {
+        var wrapperDiv = document.createElement("div");
         for (let i = 0; i < json.results.length; i++) {
           let img = document.createElement("img");
+          let shoeTitle = document.createElement("h3");
           img.src = json.results[i].urls.small;
-          document.getElementById("insertPicture").appendChild(img);
+          shoeTitle.innerHTML = json.results[i].alt_description;
+          if (json.results[i].alt_description == null || json.results[i].alt_description == "") {
+            shoeTitle.innerHTML = "No description available";
+          }
+          img.classList.add("shoeIMG");
+          shoeTitle.classList.add("header");
+          var shoeContainer = document.createElement("div");
+          shoeContainer.appendChild(shoeTitle);
+          shoeContainer.appendChild(img);
+          wrapperDiv.appendChild(shoeContainer);
         }
-            let imageURL = json.results[0].urls.small;
-            let img = document.createElement("img");
-            img.setAttribute("src", imageURL);
-            document.body.appendChild(img);
-        console.log(imageURL);
+        document.getElementById("apiInsert").appendChild(wrapperDiv);
         console.log(json);
-      })
-    //   .then(data => {
-    //     for (let i = 0; i < 10; i++) {
-    //     // data.forEach(results => {
-    //         var imageURL = json[i].urls.regular;
-    //         console.log(imageURL);
-    //       const markup = '<img src=' + json[i].urls.full + '>';
-    //       document
-    //         .querySelector("insertPicture")
-    //         .insertAdjacentHTML("beforeend", markup);
-    //     }
-    //     });
-    //   });
+      });
   });
-//   document.getElementById("results").innerHTML;
