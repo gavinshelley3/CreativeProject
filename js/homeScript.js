@@ -1,4 +1,5 @@
 /*global React*/
+/*global ReactDOM*/
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -21,7 +22,6 @@ class Home extends React.Component {
             
             )
     }
-    
-    const root = ReactDOM.createRoot(document.getElementById("home-inside"));
-    root.render(<Home />);
 }
+const root = ReactDOM.createRoot(document.getElementById("home-inside"));
+    root.render(<Home />);
