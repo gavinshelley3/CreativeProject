@@ -246,10 +246,6 @@ img {
   
 }
 
-#insertPicture {
-  
-}
-
 .insertPicture {
   display: flex;
   flex-direction: row;
