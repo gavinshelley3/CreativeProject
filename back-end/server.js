@@ -84,3 +84,59 @@ app.get("/api/cart", (req, res) => {
     
     res.send(cart); 
 });
+
+// API for getting all products
+app.get("/api/shoes", (req, res) => {
+    res.send(shoes);
+});
+
+// API for getting a specific product with an ID
+app.get("/api/shoes/:id", (req, res) => {
+   let id = req.params.id;
+   let shoe = shoes.find(item => item.id == id);
+   if (shoe == undefined){
+       res.status(404).send("Sorry, that shoe doesn't exist");
+       return;
+   }
+   res.send(shoe);
+});
+
+// API for creating a new product
+app.post('/api/shoes', (req, res) => {
+    // Get random ID for product
+    let randomId = crypto.randomUUID(); 
+    // Make new produce object based on request body
+    
+    let shoe = { 
+        id: randomId, 
+        name: req.body.name, 
+        price: req.body.price
+    };
+    // Put new product in list of products
+    shoes.push(shoe);
+    // Send response saying we added the new product
+    res.send(shoe);
+});
+
+// API for deleting a product
+app.delete("/api/shoes/:id", (req, res) => {
+    // Return an array of all products that have the requested ID
+   let shoesArray = shoes.filter(item => 
+    item.id == req.params.id);
+    // If array is empty, there are no matching products
+   if (shoesArray.length == 0){
+       res.status(404).send("Sorry, that shoe doesn't exist");
+       return;
+   }
+   // There should only be one product that matches with that ID, so remove it
+   let product = shoesArray[0];
+   // Get the index of the product in the product list
+   let index = shoes.indexOf(product.id);
+   // Remove that product from the list
+   shoes.splice(index, 1);
+   // Send a success status code
+   res.sendStatus(200);
+});
+
+
+app.listen(3003, () => console.log('Server listening on port 3003!'));
