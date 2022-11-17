@@ -22,7 +22,7 @@ function Shoe(props){
       <div className = "Shoe">
         <div key = {shoe.id} >
             <img src = "${shoe.image}"></img>
-            <p>{shoe.name}, {shoe.price}</p>
+            <p>{shoe.name}, ${shoe.price}</p>
             <button onClick={e => addToCart(shoe)}> Add to cart </button>
         </div>
      </div>

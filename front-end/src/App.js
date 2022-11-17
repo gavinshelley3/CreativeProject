@@ -13,17 +13,24 @@ function App() {
   const [shoes, setShoes] = useState([]);
   const [error, setError] = useState("");
   const [cartItems, setCartItems] = useState([]);
-
+  const [total, setTotal] = useState("");
+  
   const fetchCart = async() => {
     try{
       const response = await axios.get("/api/cart");
       setCartItems(response.data);
+      let cartTotal = 0.0;
+      for(let i = 0; i < cartItems.length; i ++){
+        cartTotal += parseFloat(cartItems[i].price) * cartItems[i].quantity;
+      }
+      setTotal(cartTotal.toFixed(2).toString());
+      console.log(cartTotal);
     } catch(error) {
       setError("Error retrieving cart items: " + error);
     }
   };
   
-    const addAllShoes = async() => {
+  const addAllShoes = async() => {
     try{
       for(let i = 0; i < importedShoes.length; i ++){
         let product = importedShoes[i];
@@ -91,7 +98,7 @@ function App() {
       
       <div> 
         <h1>Total</h1>
-        
+        <h3>${total}</h3>
       </div>
     </div>
   );

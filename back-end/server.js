@@ -49,9 +49,9 @@ app.put("/api/cart/:id/:quantity", (req, res) =>{
 
 // API for adding a shoe to the cart
 app.post("/api/cart/:id", (req, res) => {
-   // Get the product ID from the request
+   // Get the shoe ID from the request
    let shoeID = req.params.id;
-   // Get the product from the list of products
+   // Get the shoe from the list of shoes
    let shoe = shoes.find(item => item.id == shoeID);
    // Check if the product exists
    if (shoe == undefined){
@@ -59,13 +59,16 @@ app.post("/api/cart/:id", (req, res) => {
        "the wrong id.");
        return;
    }
-   // Determine if the product is already in the cart
+   // Determine if the shoe is already in the cart
    let cartItem = cart.find(shoe => shoe.id == shoeID);
    // If not in cart, cartItem will be udnefinded
    if(cartItem == undefined){
        // Add a new cartItem object into cart array
        cartItem = {
          id: shoeID, 
+         name: shoe.name,
+         price: shoe.price,
+         image: shoe.image,
          quantity: 1
        };
        // Add item to cart 
