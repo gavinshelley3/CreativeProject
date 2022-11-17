@@ -2,18 +2,17 @@ import { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import axios from 'axios';
 import './App.css';
-const SneaksAPI = require("sneaks-api");
-const sneaks = new SneaksAPI();
 import importedShoes from "./shoes.js";
+import Shoe from './Shoe.js';
+import CartItem from './CartItem.js';
+
 
 function App() {
   
   // setup state
-  const [shoes, setShoes] = useState([
-    "{}"
-    ]);
+  const [shoes, setShoes] = useState([]);
   const [error, setError] = useState("");
-  const [cartItem, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   const fetchCart = async() => {
     try{
@@ -38,27 +37,62 @@ function App() {
   
     const getShoesInDb = async() => {
     try{
-      const response = await axios.get("/api/products");
+      const response = await axios.get("/api/shoes");
       setShoes(response.data);
     } catch(error){
       setError("Error in getting shoes from database: " + error);
     } 
   };
   
-  const getShoes = async() => {
-    try {
-      await sneaks.getProducts("Yeezy Cinder", 10, function(err, products){
-          console.log(products);
-      });
-    } catch (err) {
-      setError("Error in getting sneaker data: " + err);
-    }
-  };
-
+  // Fetch shoes data
+  useEffect(() => {
+    addAllShoes();
+    getShoesInDb();
+  }, []);
   
+  // Render results in web page
   return (
     <div className="App">
-      <button onClick = "getShoes()">Get Shoes</button>
+      {error}
+      <div className = "shoes-list">
+      
+        <h1>Shoes</h1>
+      
+        {shoes.map( (shoe) => (
+        
+        <Shoe 
+          shoe = {shoe} 
+          setError = {setError} 
+          fetchCart = {fetchCart}
+          key = {shoe.id}/>
+          
+        ))}
+        
+      </div>
+      <div className = "spacer">
+      </div>
+      <div>
+        <h1>Cart</h1>
+        
+        {cartItems.map( (item) => (
+        
+        <CartItem 
+          item = {item} 
+          setError = {setError} 
+          key = {item.id} 
+          shoes = {shoes}
+          fetchCart = {fetchCart}/>
+          
+        ))}
+        
+      </div>
+      
+      <div className = "spacer"></div>
+      
+      <div> 
+        <h1>Total</h1>
+        
+      </div>
     </div>
   );
 }

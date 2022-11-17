@@ -101,7 +101,7 @@ app.get("/api/shoes/:id", (req, res) => {
    res.send(shoe);
 });
 
-// API for creating a new product
+// API for creating a new shoe
 app.post('/api/shoes', (req, res) => {
     // Get random ID for product
     let randomId = crypto.randomUUID(); 
@@ -110,7 +110,8 @@ app.post('/api/shoes', (req, res) => {
     let shoe = { 
         id: randomId, 
         name: req.body.name, 
-        price: req.body.price
+        price: req.body.price,
+        image: req.body.image
     };
     // Put new product in list of products
     shoes.push(shoe);
