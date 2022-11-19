@@ -30,17 +30,17 @@ function App() {
     }
   };
   
-  const addAllShoes = async() => {
-    try{
-      for(let i = 0; i < importedShoes.length; i ++){
-        let product = importedShoes[i];
-        let request = {name: product.name, price: product.price};
-        axios.post("/api/shoes", request);
-      }
-    } catch(error){
-      setError("Error adding all shoes to database: " + error);
-    }
-  };
+  // const addAllShoes = async() => {
+  //   try{
+  //     for(let i = 0; i < importedShoes.length; i ++){
+  //       let product = importedShoes[i];
+  //       let request = {name: product.name, price: product.price};
+  //       axios.post("/api/shoes", request);
+  //     }
+  //   } catch(error){
+  //     setError("Error adding all shoes to database: " + error);
+  //   }
+  // };
   
     const getShoesInDb = async() => {
     try{
@@ -53,7 +53,7 @@ function App() {
   
   // Fetch shoes data
   useEffect(() => {
-    addAllShoes();
+    // addAllShoes();
     getShoesInDb();
   }, []);
   
@@ -93,9 +93,7 @@ function App() {
         ))}
         
       </div>
-      
-      <div className = "spacer"></div>
-      
+   
       <div> 
         <h1>Total</h1>
         <h3>${total}</h3>

@@ -1,4 +1,8 @@
 import axios from 'axios';
+import Card from '@mui/material/Card';
+import { Button, Typography } from '@mui/material';
+
+
 
 function Shoe(props){
     const shoe = props.shoe;
@@ -18,14 +22,25 @@ function Shoe(props){
         fetchCart();
     };
     
+
     return (
-      <div className = "Shoe">
+      <Card
+        sx={{
+            color: "primary.dark",
+            width: "300px",
+        }}
+      
+      
+      >
         <div key = {shoe.id} >
-            <img src = "${shoe.image}"></img>
-            <p>{shoe.name}, ${shoe.price}</p>
-            <button onClick={e => addToCart(shoe)}> Add to cart </button>
+            <img style={{
+                width: "100%",
+                height: "auto",
+            }} src={shoe.image}></img>
+            <Typography>{shoe.name}, ${shoe.price}</Typography>
+            <Button onClick={e => addToCart(shoe)}> click here </Button>
         </div>
-     </div>
+     </Card>
     );
 }
 
