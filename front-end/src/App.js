@@ -1,100 +1,91 @@
-import { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import axios from 'axios';
-import './App.css';
+import { useState, useEffect } from "react";
+import logo from "./logo.svg";
+import axios from "axios";
+import "./App.css";
 import importedShoes from "./shoes.js";
-import Shoe from './Shoe.js';
-import CartItem from './CartItem.js';
-
+import Card from "@mui/material/Card";
+import { Button, Typography } from "@mui/material";
+import Shoe from "./Shoe.js";
+import CartItem from "./CartItem.js";
 
 function App() {
-  
   // setup state
   const [shoes, setShoes] = useState([]);
   const [error, setError] = useState("");
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState("");
-  
-  const fetchCart = async() => {
-    try{
+
+  const fetchCart = async () => {
+    try {
       const response = await axios.get("/api/cart");
       setCartItems(response.data);
       let cartTotal = 0.0;
-      for(let i = 0; i < cartItems.length; i ++){
+      for (let i = 0; i < cartItems.length; i++) {
         cartTotal += parseFloat(cartItems[i].price) * cartItems[i].quantity;
       }
       setTotal(cartTotal.toFixed(2).toString());
       console.log(cartTotal);
-    } catch(error) {
+    } catch (error) {
       setError("Error retrieving cart items: " + error);
     }
   };
-  
-  // const addAllShoes = async() => {
-  //   try{
-  //     for(let i = 0; i < importedShoes.length; i ++){
-  //       let product = importedShoes[i];
-  //       let request = {name: product.name, price: product.price};
-  //       axios.post("/api/shoes", request);
-  //     }
-  //   } catch(error){
-  //     setError("Error adding all shoes to database: " + error);
-  //   }
-  // };
-  
-    const getShoesInDb = async() => {
-    try{
+
+  const addAllShoes = async () => {
+    try {
+      const response = await axios.get("/api/sneaks");
+      // setShoes(response.data);
+    } catch (error) {
+      setError("Error adding all shoes to database: " + error);
+    }
+  };
+
+  const getShoesInDb = async () => {
+    try {
       const response = await axios.get("/api/shoes");
       setShoes(response.data);
-    } catch(error){
+    } catch (error) {
       setError("Error in getting shoes from database: " + error);
-    } 
+    }
   };
-  
+
   // Fetch shoes data
   useEffect(() => {
-    // addAllShoes();
+    addAllShoes();
     getShoesInDb();
   }, []);
-  
+
   // Render results in web page
   return (
     <div className="App">
       {error}
-      <div className = "shoes-list">
-      
+      <div className="shoes-list">
         <h1>Shoes</h1>
-      
-        {shoes.map( (shoe) => (
-        
-        <Shoe 
-          shoe = {shoe} 
-          setError = {setError} 
-          fetchCart = {fetchCart}
-          key = {shoe.id}/>
-          
+
+        {shoes.map((shoe) => (
+          <Shoe
+            shoe={shoe}
+            setError={setError}
+            fetchCart={fetchCart}
+            key={shoe.id}
+          />
         ))}
-        
       </div>
-      <div className = "spacer">
-      </div>
+      <div className="spacer"></div>
       <div>
         <h1>Cart</h1>
-        
-        {cartItems.map( (item) => (
-        
-        <CartItem 
-          item = {item} 
-          setError = {setError} 
-          key = {item.id} 
-          shoes = {shoes}
-          fetchCart = {fetchCart}/>
-          
+
+        {cartItems.map((item) => (
+          <CartItem
+            item={item}
+            setError={setError}
+            key={item.id}
+            shoes={shoes}
+            fetchCart={fetchCart}
+          />
         ))}
-        
       </div>
-   
-      <div> 
+
+      <div>
         <h1>Total</h1>
         <h3>${total}</h3>
       </div>

@@ -30,18 +30,6 @@ app.use(bodyParser.json());
 // clear the cart
 // update the quantity of an item in the cart
 
-const exampleShoe = {
-  id: 1,
-  name: "Nike Air Force 1",
-  price: 100.0,
-  image:
-    "https://images.unsplash.com/photo-1571601035754-5c927f2d7edc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c25lYWtlcnxlbnwwfHwwfHw%3D&w=1000&q=80",
-};
-
-let shoes = [exampleShoe];
-
-let cart = [];
-
 // API for deleting an item from the cart
 app.delete("/api/cart/:id", (req, res) => {
   let shoeArray = cart.filter((item) => item.id == req.params.id);
@@ -77,43 +65,42 @@ app.put("/api/cart/:id/:quantity", (req, res) => {
 });
 
 // API for adding a shoe to the cart
-app.post("/api/cart/:id", (req, res) => {
+app.post("/api/cart/:styleID", async (req, res) => {
   // Get the shoe ID from the request
-  let shoeID = req.params.id;
-  // Get the shoe from the list of shoes
-  let shoe = shoes.find((item) => item.id == shoeID);
-  // Check if the product exists
-  if (shoe == undefined) {
-    res
-      .status(404)
-      .send("Sorry, that shoe doesn't exist or you have" + "the wrong id.");
-    return;
-  }
-  // Determine if the shoe is already in the cart
-  let cartItem = cart.find((shoe) => shoe.id == shoeID);
-  // If not in cart, cartItem will be udnefinded
-  if (cartItem == undefined) {
-    // Add a new cartItem object into cart array
-    cartItem = {
-      id: shoeID,
-      name: shoe.name,
-      price: shoe.price,
-      image: shoe.image,
-      quantity: 1,
-    };
-    // Add item to cart
-    cart.push(cartItem);
+  let shoeID = req.params.styleID;
 
+  // make a call to the database to see the current cart
+  // if the shoe is already in the cart, update the quantity
+  // if the shoe is not in the cart, add it to the cart
+
+  const db = await getDb();
+  let cart = await db.collection("cart").find({}).toArray();
+
+  // Check if the shoe is already in the cart
+  let cartItem = cart.find((shoeID) => (shoeID = shoeID));
+  if (cartItem != undefined) {
+    // If the shoe is in the cart, update the quantity
+    cartItem.quantity++;
     res.send(cartItem);
+    return;
   } else {
-    // If item is in cart, just increment the number
-    cartItem.quantity += 1;
-    res.send(cartItem);
+    // add a document to the cart collection
+    let result = await db.collection("cart").insertOne({
+      shoeID: shoeID,
+      quantity: 1,
+    });
   }
+
+  // res success
+  res.sendStatus(200);
 });
 
 // API for getting all shoes in cart
-app.get("/api/cart", (req, res) => {});
+app.get("/api/cart", async (req, res) => {
+  const db = await getDb();
+  const cart = await db.collection("cart").find({}).toArray();
+  res.send(cart);
+});
 
 // API for getting all products
 app.get("/api/shoes", async (req, res) => {
@@ -122,9 +109,15 @@ app.get("/api/shoes", async (req, res) => {
   // db is a mongo client that has connected to the database
 
   // get all the shoes from the database
-  const shoes = await db.collection("shoes").find().toArray();
 
-  res.send(shoes);
+  // get max 10
+
+  const tenShoes = await db.collection("sneakers").find().limit(10).toArray();
+
+  // const shoes = await db.collection("shoes").find().toArray();
+
+  console.log(tenShoes);
+  res.send(tenShoes);
 });
 
 // API for getting a specific product with an ID
@@ -177,7 +170,7 @@ app.get("/api/sneaks", async (req, res) => {
 
   const batches = [];
 
-//   return res.send(products[0]);
+  //   return res.send(products[0]);
 
   for (let i = 0; i < products.length; i += 100) {
     batches.push(products.slice(i, i + 100));
@@ -201,10 +194,11 @@ app.get("/api/sneaks", async (req, res) => {
       product.price = prices[j];
     }
 
-    await db.collection("sneakers").insertMany(batch);
+    await db.collection("sneakers").insertMany(batch, (upsert = true));
     console.log("Inserted batch " + i);
   }
 
+  shoes = products;
   res.send(products);
 });
 
