@@ -89,6 +89,14 @@ function App() {
         <h1>Total</h1>
         <h3>${total}</h3>
       </div>
+      <div>
+        <p>
+          Created by:{" "}
+          <a href="https://github.com/ELKerr97/CreativeProject">
+            Ethan Kerr and Gavin Shelley
+          </a>
+        </p>
+      </div>
     </div>
   );
 }

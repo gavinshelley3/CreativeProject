@@ -35,7 +35,7 @@ app.get("/api/hello", async (req, res) => {
 // update the quantity of an item in the cart
 
 // API for deleting an item from the cart
-app.delete("/api/cart/:id", (req, res) => {
+app.delete("/api/cart/:styleID", (req, res) => {
   let shoeArray = cart.filter((item) => item.id == req.params.id);
   if (shoeArray.length == 0) {
     res.status(404).send("Sorry, that item is not in the cart.");
@@ -48,12 +48,12 @@ app.delete("/api/cart/:id", (req, res) => {
 });
 
 // API for updating the quantity of an item in the cart
-app.put("/api/cart/:id/:quantity", (req, res) => {
+app.put("/api/cart/:styleID/:quantity", (req, res) => {
   // Get the ID and quantity
   let shoeID = req.params.id;
   let quanity = parseInt(req.params.quantity);
   // Try to find the item in the cart
-  let cartItem = cart.find((shoe) => (shoe.id = shoeID));
+  let cartItem = cart.find((styleID) => (styleID = shoeID));
   if (cartItem == undefined) {
     res.status(404).send("Sorry, but that shoe is not in the cart.");
     return;
@@ -63,7 +63,7 @@ app.put("/api/cart/:id/:quantity", (req, res) => {
   res.send(cartItem);
   // If the quantity is changed to zero, remove the item from the cart
   if (quanity == 0) {
-    let index = cart.indexOf(shoeID);
+    let index = cart.indexOf(styleID);
     cart.splice(index, 1);
   }
 });
