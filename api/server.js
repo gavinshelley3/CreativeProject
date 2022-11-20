@@ -250,4 +250,5 @@ app.delete("/api/shoes/:id", (req, res) => {
   res.sendStatus(200);
 });
 
-app.listen(3003, () => console.log("Server listening on port 3003!"));
+// app.listen(3003, () => console.log("Server listening on port 3003!"));
+module.exports = app;
