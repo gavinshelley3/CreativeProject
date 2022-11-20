@@ -15,6 +15,10 @@ app.use(
 
 app.use(bodyParser.json());
 
+app.get("/api/hello", async (req, res) => {
+  res.send("Hello World!");
+});
+
 // 2 apis
 
 // shoe api
