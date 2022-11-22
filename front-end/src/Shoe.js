@@ -1,6 +1,6 @@
 import axios from "axios";
-import Card from "@mui/material/Card";
-import { Button, Typography } from "@mui/material";
+// import  from "@mui/material/Card";
+import { Button, Typography, Card } from "@mui/material";
 
 function Shoe(props) {
   const shoe = props.shoe;
@@ -11,14 +11,9 @@ function Shoe(props) {
 
   const addOneShoe = async (shoe) => {
     try {
-      console.log("Adding shoe to cart");
-      const url = "/api/cart/" + shoe.styleID;
-
-      console.log("shoe", shoe);
-      console.log(url);
-
-      //   debugger;
+      console.log("Posting shoe to cart");
       await axios.post("/api/cart/" + shoe.styleID);
+      console.log("Posted shoe to cart");
     } catch (error) {
       setError("Error adding shoe to cart: " + error);
     }
@@ -46,7 +41,7 @@ function Shoe(props) {
         backgroundColor: "primary.light",
       }}
     >
-      <div key={shoe.id}>
+      <div key={shoe.styleID}>
         <div
           style={{
             width: "400px",
@@ -65,8 +60,8 @@ function Shoe(props) {
             src={shoe.thumbnail}
             alt="shoe"
           ></img>
-          <Typography sx={{ margin: "10px", width: "200px" }}>
-            <h3>{shoe.shoeName}</h3>
+          <Typography variant="h5" sx={{ margin: "10px", width: "200px" }}>
+            <b>{shoe.shoeName}</b>
           </Typography>
         </div>
         <div
@@ -77,19 +72,54 @@ function Shoe(props) {
             justifyContent: "space-between",
             padding: "10px",
             margin: "20px 0px 0px 0px",
+            alignItems: "flex-start",
           }}
         >
           <Typography>Retail: ${shoe.retailPrice}</Typography>
-          <Typography>StockX: ${shoe.lowestResellPrice.stockX}</Typography>
-          <Typography>GOAT: ${shoe.lowestResellPrice.goat}</Typography>
           <Typography>
-            Flight Club: ${shoe.lowestResellPrice.flightClub}
+            StockX: $
+            {shoe.lowestResellPrice === undefined ||
+            shoe.lowestResellPrice === null
+              ? " -"
+              : shoe.lowestResellPrice.stockX}
           </Typography>
           <Typography>
-            Stadium Goods: ${shoe.lowestResellPrice.stadiumGoods}
+            GOAT: $
+            {shoe.lowestResellPrice === undefined ||
+            shoe.lowestResellPrice.goat === undefined
+              ? " -"
+              : shoe.lowestResellPrice.goat}
+          </Typography>
+          <Typography>
+            Flight Club: $
+            {shoe.lowestResellPrice === undefined ||
+            shoe.lowestResellPrice.flightClub === undefined
+              ? " -"
+              : shoe.lowestResellPrice.flightClub}
+          </Typography>
+          <Typography>
+            Stadium Goods: $
+            {shoe.lowestResellPrice === undefined ||
+            shoe.lowestResellPrice.stadiumGoods === undefined
+              ? " -"
+              : shoe.lowestResellPrice.stadiumGoods}
           </Typography>
         </div>
-        <Button onClick={addToCart}> click here </Button>
+        <Button
+          sx={{
+            width: "100px",
+            margin: "auto",
+            backgroundColor: "primary.dark",
+            color: "primary.light",
+            "&:hover": {
+              backgroundColor: "primary.light",
+              color: "primary.dark",
+            },
+          }}
+          onClick={addToCart}
+        >
+          Add to Cart
+        </Button>
       </div>
     </Card>
   );
