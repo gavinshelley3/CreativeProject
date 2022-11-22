@@ -33,8 +33,8 @@ function App() {
         } catch (error) {
           setError("Error getting shoe with associated shoe ID: " + error);
         }
-        setTotal(count);
-        setTotalPrice(price);
+        // setTotal(count);
+        // setTotalPrice(price);
       }
       setTotal(count);
       setTotalPrice(price);
