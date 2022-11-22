@@ -23,6 +23,7 @@ function App() {
       let count = 0;
       let price = 0;
       console.log("response: ", response);
+
       for (let i = 0; i < response.data.length; i++) {
         count += response.data[i].quantity;
         try {
