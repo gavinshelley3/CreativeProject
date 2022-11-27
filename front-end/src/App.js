@@ -23,6 +23,7 @@ function App() {
       let count = 0;
       let price = 0;
       console.log("response: ", response);
+
       for (let i = 0; i < response.data.length; i++) {
         count += response.data[i].quantity;
         try {
@@ -33,8 +34,8 @@ function App() {
         } catch (error) {
           setError("Error getting shoe with associated shoe ID: " + error);
         }
-        setTotal(count);
-        setTotalPrice(price);
+        // setTotal(count);
+        // setTotalPrice(price);
       }
       setTotal(count);
       setTotalPrice(price);
